@@ -1,0 +1,5 @@
+
+```bash
+docker buildx build --build-arg RUNNER_VERSION=2.312.0 --tag vdsnils/github_runner . 
+docker run --rm --name gh_runner -e GH_USER_TOKEN=$GH_USER_TOKEN -e GH_OWNER=$GH_OWNER -e GH_REPOSITORY=$GH_REPOSITORY -d vdsnils/github_runner:latest
+```
