@@ -13,7 +13,8 @@ RUN apt-get update -y && apt-get upgrade -y && useradd -m docker
 
 # install the packages and dependencies along with jq so we can parse JSON (add additional packages as necessary)
 RUN apt-get install -y --no-install-recommends \
-    curl nodejs wget unzip vim git jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip libpq-dev
+    curl nodejs wget unzip vim git jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip libpq-dev \
+    docker
     # curl nodejs wget unzip vim git azure-cli jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip
 
 # cd into the user directory, download and unzip the github actions runner
