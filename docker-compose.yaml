@@ -1,0 +1,21 @@
+version: "3.6"
+
+services:
+
+  gh_runner:
+    image: nbmdc/github_runner:tmp
+    build:
+      dockerfile: ./Dockerfile
+      args:
+        RUNNER_VERSION: 2.312.0
+    environment:
+      GH_OWNER: naturalsciences
+      GH_REPOSITORY: qualityAssuranceTool
+      RUNNER_LABELS: ${HOST}
+      GH_USER_TOKEN: /run/secrets/GH_USER_TOKEN_SECRET
+    secrets:
+      - GH_USER_TOKEN_SECRET
+    restart: unless-stopped
+secrets:
+  GH_USER_TOKEN_SECRET:
+    file: .token.txt

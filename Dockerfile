@@ -4,6 +4,7 @@ FROM ubuntu:22.04
 #input GitHub runner version argument
 ARG RUNNER_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
+ENV GH_TOKEN=GH_USER_TOKEN_SECRET
 
 LABEL BaseImage="ubuntu:22.04"
 LABEL RunnerVersion=${RUNNER_VERSION}

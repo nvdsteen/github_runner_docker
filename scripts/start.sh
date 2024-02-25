@@ -3,11 +3,13 @@
 GH_OWNER=$GH_OWNER
 GH_REPOSITORY=$GH_REPOSITORY
 GH_TOKEN=$GH_TOKEN
-GH_USER_TOKEN=$GH_USER_TOKEN
+GH_USER_TOKEN=$(cat $GH_USER_TOKEN)
 RUNNER_LABELS=$RUNNER_LABELS
 
 RUNNER_SUFFIX=$(cat /dev/urandom | tr -dc 'a-z0-9' | fold -w 5 | head -n 1)
 RUNNER_NAME="dockerNode-${RUNNER_SUFFIX}"
+
+echo $GH_USER_TOKEN
 
 # this was included in the tutorial
 # but I get the token of the runner from the web interface
@@ -20,7 +22,10 @@ fi
 cd /home/docker/actions-runner
 
 ./config.sh --unattended --url https://github.com/${GH_OWNER}/${GH_REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME} --labels ${RUNNER_LABELS}
-
+echo ${GH_REPOSITORY}
+echo ${GH_OWNER}
+echo ${REG_TOKEN}
+echo ${GH_USER_TOKEN}
 cleanup() {
     echo "Removing runner..."
     ./config.sh remove --unattended --token ${REG_TOKEN}
