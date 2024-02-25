@@ -3,15 +3,17 @@ version: "3.6"
 services:
 
   gh_runner:
-    image: nbmdc/github_runner:tmp
+    image: rbinsbmdc/github_runner
     build:
       dockerfile: ./Dockerfile
       args:
         RUNNER_VERSION: 2.312.0
+    env_file:
+      - path: .env
+        required: true # default
     environment:
       GH_OWNER: naturalsciences
       GH_REPOSITORY: qualityAssuranceTool
-      RUNNER_LABELS: ${HOST}
       GH_USER_TOKEN: /run/secrets/GH_USER_TOKEN_SECRET
     secrets:
       - GH_USER_TOKEN_SECRET
